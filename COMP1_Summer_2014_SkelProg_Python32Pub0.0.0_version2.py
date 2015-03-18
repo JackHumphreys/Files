@@ -1,10 +1,11 @@
-# Skeleton Program code for the AQA COMP1 Summer 2014 examination
+ # Skeleton Program code for the AQA COMP1 Summer 2014 examination
 # this code should be used in conjunction with the Preliminary Material
 # written by the AQA Programmer Team
 # developed in the Python 3.2 programming environment
 # version 2 edited 06/03/2014
 
 import random
+from datetime import *
 
 NO_OF_RECENT_SCORES = 3
 
@@ -17,6 +18,7 @@ class TRecentScore():
   def __init__(self):
     self.Name = ''
     self.Score = 0
+    self.Date = ''
 
 Deck = [None]
 RecentScores = [None]
@@ -133,8 +135,10 @@ def GetPlayerName():
     print("You must enter something for your name!")
     print()
     PlayerName = input('Please enter your name: ')
+  current_date = datetime.now()
+  PlayerDate = datetime.strftime(current_date, "%d/%m/%Y")
   print()
-  return PlayerName
+  return PlayerName, PlayerDate
 
 def GetChoiceFromUser():
   Choice = input('Do you think the next card will be higher than the last card (enter y or n)? ')
@@ -163,9 +167,9 @@ def DisplayRecentScores(RecentScores):
   print()
   print('Recent Scores: ')
   print()
-  print("{0:<9} {1:<5}".format("Name", "Score"))
+  print("{0:<9} {1:<5} {2:<10}".format("Name", "Score", "Date"))
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
-    print("{0:<9} {1:<5}".format(RecentScores[Count].Name, RecentScores[Count].Score))
+    print("{0:<9} {1:<5} {2:<10}".format(RecentScores[Count].Name, RecentScores[Count].Score, RecentScores[Count].Date))
   print()
   print('Press the Enter key to return to the main menu')
   input()
@@ -174,7 +178,7 @@ def DisplayRecentScores(RecentScores):
 def UpdateRecentScores(RecentScores, Score):
   ScoreAdded = input("Do you wan to add your score to the table (y or n): ")
   if ScoreAdded == "y":
-    PlayerName = GetPlayerName()
+    PlayerName, PlayerDate = GetPlayerName()
     FoundSpace = False
     Count = 1
     while (not FoundSpace) and (Count <= NO_OF_RECENT_SCORES):
@@ -186,9 +190,11 @@ def UpdateRecentScores(RecentScores, Score):
       for Count in range(1, NO_OF_RECENT_SCORES):
         RecentScores[Count].Name = RecentScores[Count + 1].Name
         RecentScores[Count].Score = RecentScores[Count + 1].Score
+        RecentScores[Count].Date = RecentScores[Count + 1].Date
       Count = NO_OF_RECENT_SCORES
     RecentScores[Count].Name = PlayerName
     RecentScores[Count].Score = Score
+    RecentScores[Count].Date = PlayerDate
   else:
     pass
 

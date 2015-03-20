@@ -244,7 +244,7 @@ if __name__ == '__main__':
       PlayGame(Choice, Deck, RecentScores)
     elif Choice == '2':
       LoadDeck(Deck)
-      PlayGame(Deck, RecentScores)
+      PlayGame(Choice, Deck, RecentScores)
     elif Choice == '3':
       DisplayRecentScores(RecentScores)
     elif Choice == '4':

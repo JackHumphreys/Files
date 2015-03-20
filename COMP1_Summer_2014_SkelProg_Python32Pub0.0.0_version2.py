@@ -198,6 +198,16 @@ def UpdateRecentScores(RecentScores, Score):
   else:
     pass
 
+def DisplayOptions():
+  print("-- OPTIONS MENU --")
+
+def
+
+def SetAceHighOrLow():
+  AceDecision = input("Do you want the Ace to be set to (h)igh or (l)ow: ")
+  
+
+
 def PlayGame(Choice, Deck, RecentScores):
   LastCard = TCard()
   NextCard = TCard()
